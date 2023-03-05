@@ -1,0 +1,24 @@
+<!-- <script src="./src/index.js"></script> -->
+
+<script>
+  // a prototype of bundle.js
+  (function (list) {
+    function require(file) {
+      var exports = {};
+      // self-executing anonymous function
+      (function (exports, code) {
+        eval(code);
+      })(exports, list[file]);
+      return exports;
+    }
+
+    // entry
+    require("index.js");
+  })({
+    "add.js": "exports.default = function (a, b) { return a + b; };",
+    "index.js": `
+        var add = require("add.js").default;
+          console.log(add(2, 4));
+    `,
+  });
+</script>
