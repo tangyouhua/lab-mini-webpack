@@ -1,2 +1,2 @@
-var add = require("./add").default;
-console.log(add(2, 4));
+import add from './add'
+console.log(add(2, 4))
